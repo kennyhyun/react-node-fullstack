@@ -8,8 +8,11 @@ const path = require('path');
 
 const indexRouter = require('./routes/index');
 
-const app = express()
-const router = express.Router()
+const { Product } = require('./models');
+const dummyData = require('./dummyData');
+
+const app = express();
+const router = express.Router();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -19,12 +22,15 @@ app.use(methodOverride())
 
 const {
   MONGODB = 'mongodb://localhost:27017/database',
+  PORT = '3000',
 } = process.env;
+
+app.set('port', PORT);
 
 if (process.env.NODE_ENV !== 'test') {
   mongoose.connect(MONGODB)
     .then(() => {
-      console.log('MongoDB connected…');
+      console.log('MongoDB connected.');
       // dummyData();
     })
     .catch(err => console.log(err));
@@ -32,10 +38,7 @@ if (process.env.NODE_ENV !== 'test') {
 
 app.use('/', indexRouter);
 
-restify.serve(router, mongoose.model('Product', new mongoose.Schema({
-    name: { type: String, required: true },
-    description: { type: String }
-})))
+restify.serve(router, Product);
 
 app.use(router)
 
