@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 
-const Products = () => <div>Products</div>;
+import { Products } from './components';
 
 import './App.css';
 
