@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "prepare": "yarn --cwd restapi && yarn --cwd frontend",
+    "prepare": "yarn --cwd restapi && yarn --cwd react-components && yarn --cwd frontend && yarn --cwd frontend link react-components",
     "start": "yarn --cwd frontend dev"
   },
   "devDependencies": {

@@ -1,0 +1,31 @@
+{
+  "name": "react-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel components --out-dir lib",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "yarn build && yarn link",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^3.9.2",
+    "@material-ui/styles": "^3.0.0-alpha.10",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.2",
+    "@storybook/addon-actions": "^4.1.2",
+    "@storybook/addon-links": "^4.1.2",
+    "@storybook/addons": "^4.1.2",
+    "@storybook/react": "^4.1.2",
+    "babel-loader": "^8.0.4"
+  }
+}
