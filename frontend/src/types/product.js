@@ -1,0 +1,9 @@
+const APPEND = 'PRODUCT/APPEND';
+const CLEAR = 'PRODUCT/CLEAR';
+const SET_PAGE = 'PRODUCT/SET_PAGE';
+
+export {
+  APPEND,
+  CLEAR,
+  SET_PAGE,
+};
