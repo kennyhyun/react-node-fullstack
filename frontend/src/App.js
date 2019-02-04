@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-d
 
 const Products = () => <div>Products</div>;
 
+import './App.css';
+
 class App extends Component {
   render() {
     return (
