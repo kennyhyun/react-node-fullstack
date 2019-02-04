@@ -6,6 +6,7 @@
     "prestart": "webpack --mode production",
     "start": "node ./dist/index.js",
     "predev": "webpack --mode development --watch&",
+    "postinstall": "webpack --mode development",
     "dev": "nodemon \"./dist/index.js\" --watch \"./dist\""
   },
   "dependencies": {

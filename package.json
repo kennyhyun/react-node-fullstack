@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {
+  "scripts": {
+    "prepare": "yarn --cwd restapi && yarn --cwd frontend",
+    "start": "yarn --cwd frontend dev"
+  },
+  "devDependencies": {
     "create-react-app": "^2.1.3",
     "express-generator": "^4.16.0"
   }
