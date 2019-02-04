@@ -9,7 +9,7 @@ const path = require('path');
 const indexRouter = require('./routes/index');
 
 const { Product } = require('./models');
-const dummyData = require('./dummyData');
+const dummyData = require('./dummyData').default;
 
 const app = express();
 const router = express.Router();
@@ -31,7 +31,7 @@ if (process.env.NODE_ENV !== 'test') {
   mongoose.connect(MONGODB)
     .then(() => {
       console.log('MongoDB connected.');
-      // dummyData();
+      dummyData();
     })
     .catch(err => console.log(err));
 }

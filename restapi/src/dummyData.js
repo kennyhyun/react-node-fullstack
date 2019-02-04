@@ -5,7 +5,7 @@ export default async function () {
     return null;
   }
   console.log('inserting dummy data');
-  const data = await import('./products.json');
+  const data = (await import('./products.json')).default;
   return Product.create(data.map(({
     price,
     product_name: name,
