@@ -29,7 +29,7 @@ const ListHeader = ({
       <Select
         name={`${itemsPerPage} per page`}
         id="items-per-page"
-        value={'8'}
+        value={itemsPerPage}
         items={['32', '16', '8', '4']}
         handleChange={(e, elm) => confirmItemsPerPage(elm.props.value)}
         formatLabel={t => `${t} per page`}
