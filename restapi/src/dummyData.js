@@ -5,7 +5,7 @@ export default async function () {
     return null;
   }
   console.log('inserting dummy data');
-  const data = (await import('./products.json')).default;
+  const data = require('./products.json');
   await data.reduce(async (p, d) => {
     await p;
     const {

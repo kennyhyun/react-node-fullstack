@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "prepare": "yarn --cwd restapi && yarn --cwd react-components && yarn --cwd frontend && yarn --cwd frontend link react-components",
-    "start": "yarn --cwd frontend dev"
+    "prepare": "cd restapi && npm i && cd ../react-components && npm link && cd ../frontend && npm i && npm link react-components",
+    "start": "cd frontend && npm run dev"
   },
   "devDependencies": {
     "create-react-app": "^2.1.3",

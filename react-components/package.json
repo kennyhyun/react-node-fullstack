@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel components --out-dir lib",
     "test": "jest --coverage",
-    "postinstall": "yarn build && yarn link",
+    "postinstall": "npm run build",
     "storybook": "start-storybook -c .storybook.webpack -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -17,6 +17,7 @@
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/styles": "^3.0.0-alpha.10",
+    "core-js": "^2.6.3",
     "proptypes-helper": "^0.1.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",

@@ -21,7 +21,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "server": "PORT=3001 yarn --cwd ../restapi dev",
+    "server": "cd ../restapi && PORT=3001 npm run dev",
     "dev": "run-p server start",
     "eject": "react-scripts eject"
   },
