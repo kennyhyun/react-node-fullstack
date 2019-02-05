@@ -5,12 +5,30 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
-import { ListHeader } from '../components';
+import { ProductCard, ListHeader, ListFooter } from '../components';
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
+storiesOf('ProductCard', module)
+  .add('default', () => <ProductCard
+      title="Pilot product"
+      image="https://imgplaceholder.com/640x360"
+      description="A pilot product for test"
+      price="$16.99"
+    />)
+;
+
 storiesOf('ListHeader', module)
-  .add('default', () => <ListHeader />)
+  .add('default', () => <ListHeader confirmItemsPerPage={action('confirmed')}/>)
+;
+
+storiesOf('ListFooter', module)
+  .add('default', () => {
+    return <ListFooter
+    confirmPage={action('confirmed')}
+    totalItems={41}
+    page={3}
+  />})
 ;
 
 storiesOf('Button', module)
