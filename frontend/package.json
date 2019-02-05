@@ -14,7 +14,8 @@
     "react-sizes": "^1.0.4",
     "recompose": "^0.30.0",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "url-search-params-polyfill": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
