@@ -8,6 +8,7 @@ import { ProductCard, ListHeader, ListFooter } from 'react-components';
 import Grid from '@material-ui/core/Grid';
 
 import * as actions from '../actions/product';
+import * as appActions from '../actions/app';
 
 const styles = {
   grid: {
@@ -23,7 +24,7 @@ const styles = {
   },
 };
 
-const Products = ({ appState, state, classes, isMobile, setPage }) => {
+const Products = ({ appState, state, classes, isMobile, setPage, setItemsPerPage }) => {
   const { page, products: allProducts } = state;
   const { items } = appState;
   const total = allProducts.length;
@@ -35,6 +36,8 @@ const Products = ({ appState, state, classes, isMobile, setPage }) => {
     <ListHeader
       title="All Products"
       totalItems={total}
+      itemsPerPage={items}
+      confirmItemsPerPage={setItemsPerPage}
     />
     <Grid container spacing={isMobile ? 8 : 16}>
       {products.map((p, i) => {
@@ -65,6 +68,9 @@ export default compose(
       appState: state.appReducer,
     }),
     dispatch => ({
+      setItemsPerPage(p) {
+        return dispatch(appActions.setItemsPerPage(p));
+      },
       setPage(p) {
         return dispatch(actions.setPage(p));
       },

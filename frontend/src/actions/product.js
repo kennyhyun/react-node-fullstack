@@ -8,7 +8,7 @@ export const clearProduct = () => ({
 
 export const setPage = num => ({
   type: SET_PAGE,
-  payload: { num },
+  payload: { num: Number(num) },
 });
 
 export const appendProducts = products => ({
