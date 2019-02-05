@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 const {
-  BASE_URL = '/api',
+  BASE_URL = '/api/v1',
 } = process.env;
 
 export const apiCall = (endpoint, method = 'get', body) =>

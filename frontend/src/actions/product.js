@@ -1,4 +1,5 @@
 import { APPEND, CLEAR, SET_PAGE } from '../types/product';
+import { apiCall } from '../utils';
 
 export const clearProduct = () => ({
   type: CLEAR,
@@ -10,14 +11,14 @@ export const setPage = num => ({
   payload: { num },
 });
 
-export const appendProduct = products => ({
+export const appendProducts = products => ({
   type: APPEND,
   payload: { products },
 });
 
-export const fetchProducts = ({}) =>
+export const fetchProducts = ({} = {}) =>
   dispatch =>
-    callApi('products')
+    apiCall('Product')
       .then(res => {
         dispatch(appendProducts(res))
-      }
+      });
