@@ -2,24 +2,14 @@ import React from 'react';
 import injectSheet from 'react-jss'
 import { connect } from 'react-redux';
 import { compose, lifecycle, withProps, withHandlers } from 'recompose';
-import withSizes from 'react-sizes';
 import 'url-search-params-polyfill';
 
-import { ProductCard, ListHeader, ListFooter } from 'react-components';
-import Grid from '@material-ui/core/Grid';
+import { ProductGrid, ListHeader, ListFooter } from 'react-components';
 
 import * as actions from '../actions/product';
 import { getParam } from '../history';
 
 const styles = {
-  grid: {
-    display: 'flex',
-    margin: [[ 16, -16 ]],
-    '& > *': {
-      margin: 16,
-      width: '40%',
-    },
-  },
   wrapper: {
     overflow: 'hidden',
   },
@@ -33,33 +23,24 @@ const Products = ({ searchParam, state, classes, isMobile, setPage, setItemsPerP
   const products = allProducts.slice(offset, offset + items);
 
   return (
-  <div className={classes.wrapper}>
-    <ListHeader
-      title="All Products"
-      totalItems={total}
-      itemsPerPage={items}
-      confirmItemsPerPage={setItemsPerPage}
-    />
-    <Grid container spacing={isMobile ? 8 : 16}>
-      {products.map((p, i) => {
-        return <Grid item xs={6} sm={4} md={3} lg={2} key={p._id}>
-          <ProductCard
-            title={p.name}
-            description={p.description}
-            price={p.price}
-            image={p.image}
-          />
-        </Grid>;
-      })}
-    </Grid>
-    <ListFooter
-      confirmPage={setPage}
-      page={page}
-      itemsPerPage={items}
-      totalItems={total}
-    />
-  </div>
-);
+    <div className={classes.wrapper}>
+      <ListHeader
+        title="All Products"
+        totalItems={total}
+        itemsPerPage={items}
+        confirmItemsPerPage={setItemsPerPage}
+      />
+      <ProductGrid
+        items={products}
+      />
+      <ListFooter
+        confirmPage={setPage}
+        page={page}
+        itemsPerPage={items}
+        totalItems={total}
+      />
+    </div>
+  );
 };
 
 export default compose(
@@ -108,9 +89,6 @@ export default compose(
       }
     };
   }),
-  withSizes(({ width }) => ({
-    isMobile: width < 600,
-  })),
   injectSheet(styles)
 )(Products);
 
