@@ -1,5 +1,6 @@
 import { APPEND, CLEAR, SET_PAGE } from '../types/product';
 const initState = {
+  page: 1,
   products: [],
 }
 export default (state = initState, action) => {
