@@ -7,6 +7,7 @@ import ForwardIcon from '@material-ui/icons/KeyboardArrowRight';
 import Pagination from "react-js-pagination";
 import withSizes from 'react-sizes';
 import { compose } from 'recompose';
+import { defaultProps, propTypes } from 'proptypes-helper';
 
 import { Row } from './common';
 
@@ -56,9 +57,20 @@ const styles = {
   ...paginationStyles,
 };
 
+const types = {
+  optional: {
+    itemsPerPage: 8,
+    page: 1,
+  },
+  required: {
+    totalItems: 0,
+    confirmPage: () => {},
+  },
+};
+
 const ListFooter = ({
-  itemsPerPage = 8,
-  page = 1,
+  itemsPerPage,
+  page,
   totalItems = 0,
   confirmPage = () => {},
   isMobile,
@@ -100,6 +112,9 @@ const ListFooter = ({
     </div>
   );
 };
+
+ListFooter.defaultProps = defaultProps(types);
+ListFooter.propTypes = propTypes(types);
 
 const Enhanced = compose(
   withSizes(({ width }) => ({

@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import { defaultProps, propTypes } from 'proptypes-helper';
 
 const styles = {
   media: {
@@ -14,13 +15,14 @@ const styles = {
   },
   title: {
     opacity: 0.6,
-    lineHeight: '90%',
+    lineHeight: '100%',
   },
   desc: {
     opacity: 0.6,
+    lineHeight: '100%',
   },
   price: {
-    lineHeight: '95%',
+    lineHeight: '128%',
   },
   content: {
     '&:last-child': {
@@ -30,6 +32,17 @@ const styles = {
   card: {
     borderRadius: 0,
     height: '100%',
+  },
+};
+
+const types = {
+  optional: {
+    title: 'Untitled Item',
+    image: 'https://imgplaceholder.com/640x360',
+    price: '$0',
+    description: '',
+  },
+  required: {
   },
 };
 
@@ -62,6 +75,9 @@ const ProductCard = ({
     </Card>
   );
 };
+
+ProductCard.defaultProps = defaultProps(types);
+ProductCard.propTypes = propTypes(types);
 
 const Enhanced = withStyles(styles)(ProductCard);
 

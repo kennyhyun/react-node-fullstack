@@ -10,12 +10,18 @@ import { ProductCard, ProductGrid, ListHeader, ListFooter } from '../components'
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 storiesOf('ProductCard', module)
-  .add('default', () => <ProductCard
+  .add('default', () => <>
+    <ProductCard
       title="Pilot product"
       image="https://imgplaceholder.com/640x360"
-      description="A pilot product for test"
+      description="A pilot product for test very long long long long long long long long long long long long long description"
       price="$16.99"
-    />)
+    />
+    <div>.</div>
+    <ProductCard description="single line"/>
+    <div>.</div>
+    <ProductCard />
+  </>)
 ;
 
 storiesOf('ProductGrid', module)
@@ -30,16 +36,31 @@ storiesOf('ProductGrid', module)
 ;
 
 storiesOf('ListHeader', module)
-  .add('default', () => <ListHeader confirmItemsPerPage={action('confirmed')}/>)
+  .add('default', () => <ListHeader
+    confirmItemsPerPage={action('confirmed')}
+    totalItems={102456783}
+  />)
 ;
 
 storiesOf('ListFooter', module)
   .add('default', () => {
-    return <ListFooter
-    confirmPage={action('confirmed')}
-    totalItems={1000}
-    page={3}
-  />})
+    return <>
+      <ListFooter
+        confirmPage={action('confirmed')}
+        totalItems={10}
+      />
+      <ListFooter
+        confirmPage={action('confirmed')}
+        totalItems={48}
+        page={3}
+      />
+      <ListFooter
+        confirmPage={action('confirmed')}
+        totalItems={1000}
+        page={23}
+      />
+    </>
+  })
 ;
 
 storiesOf('Button', module)

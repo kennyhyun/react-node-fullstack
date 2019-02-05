@@ -3,6 +3,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
+import { defaultProps, propTypes } from 'proptypes-helper';
 
 import { Row } from './common';
 import { Preset as Select } from './select';
@@ -17,9 +18,20 @@ const styles = {
   },
 };
 
+const types = {
+  optional: {
+    title: 'List Header',
+    itemsPerPage: 8,
+  },
+  required: {
+    totalItems: 0,
+    confirmItemsPerPage: () => {},
+  },
+};
+
 const ListHeader = ({
   title,
-  itemsPerPage = 8,
+  itemsPerPage,
   totalItems = 0,
   confirmItemsPerPage = () => {},
   classes,
@@ -36,7 +48,7 @@ const ListHeader = ({
       />
     </div>
     <Typography variant="h5" component="h2">
-      {title || 'List Header'}
+      {title}
     </Typography>
     <Typography color="textSecondary">
       {totalItems ? `${totalItems} products` : 'No item'}
@@ -44,6 +56,9 @@ const ListHeader = ({
     <Divider />
   </div>
 );
+
+ListHeader.defaultProps = defaultProps(types);
+ListHeader.propTypes = propTypes(types);
 
 const Enhanced = withStyles(styles)(ListHeader);
 
