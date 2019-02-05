@@ -4,9 +4,37 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import BackIcon from '@material-ui/icons/KeyboardArrowLeft';
 import ForwardIcon from '@material-ui/icons/KeyboardArrowRight';
+import Pagination from "react-js-pagination";
 
 import { Row } from './common';
-import { Pagination } from './pagination';
+
+const paginationStyles = {
+  pgRoot: {
+    display: 'flex',
+    listStyleType: 'none',
+    margin: 0,
+    padding: 0,
+    textAlign: 'center',
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    '& li': {
+      height: 32,
+      minWidth: 48,
+      lineHeight: 2.1,
+      '& a': {
+        textDecoration: 'none',
+        color: 'inherit',
+      },
+      '&:hover': {
+        cursor: 'pointer',
+      },
+    },
+  },
+  pgActive: {
+    backgroundColor: 'white',
+    fontWeight: 600,
+    borderBottom: [['solid', 2, 'gray']],
+  },
+};
 
 const styles = {
   wrapper: {
@@ -15,7 +43,8 @@ const styles = {
   },
   content: {
     display: 'flex',
-  }
+  },
+  ...paginationStyles,
 };
 
 const ListFooter = ({
@@ -40,7 +69,17 @@ const ListFooter = ({
           <BackIcon />
           Previous page
         </Button>
-        <Pagination pages={pages} page={page} confirmPage={confirmPage}/>
+        <Pagination
+          hideFirstLastPages
+          hideNavigation
+          itemsCountPerPage={itemsPerPage}
+          totalItemsCount={totalItems}
+          activePage={page}
+          pageRangeDisplayed={10}
+          onChange={confirmPage}
+          innerClass={classes.pgRoot}
+          activeClass={classes.pgActive}
+        />
         <Button disabled={isLast} onClick={() => move(1)}>
           Next page
           <ForwardIcon />

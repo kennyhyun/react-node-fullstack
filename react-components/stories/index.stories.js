@@ -26,7 +26,7 @@ storiesOf('ListFooter', module)
   .add('default', () => {
     return <ListFooter
     confirmPage={action('confirmed')}
-    totalItems={41}
+    totalItems={1000}
     page={3}
   />})
 ;
