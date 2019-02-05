@@ -1,14 +1,15 @@
 import React from 'react';
 import injectSheet from 'react-jss'
 import { connect } from 'react-redux';
-import { compose, lifecycle } from 'recompose';
+import { compose, lifecycle, withProps, withHandlers } from 'recompose';
 import withSizes from 'react-sizes';
+import 'url-search-params-polyfill';
 
 import { ProductCard, ListHeader, ListFooter } from 'react-components';
 import Grid from '@material-ui/core/Grid';
 
 import * as actions from '../actions/product';
-import * as appActions from '../actions/app';
+import { getParam } from '../history';
 
 const styles = {
   grid: {
@@ -24,9 +25,9 @@ const styles = {
   },
 };
 
-const Products = ({ appState, state, classes, isMobile, setPage, setItemsPerPage }) => {
-  const { page, products: allProducts } = state;
-  const { items } = appState;
+const Products = ({ searchParam, state, classes, isMobile, setPage, setItemsPerPage }) => {
+  const { products: allProducts } = state;
+  const { itemsPerPage: items = 8, page } = searchParam;
   const total = allProducts.length;
   const offset = ((page - 1) * items);
   const products = allProducts.slice(offset, offset + items);
@@ -65,15 +66,8 @@ export default compose(
   connect(
     state => ({
       state: state.productReducer,
-      appState: state.appReducer,
     }),
     dispatch => ({
-      setItemsPerPage(p) {
-        return dispatch(appActions.setItemsPerPage(p));
-      },
-      setPage(p) {
-        return dispatch(actions.setPage(p));
-      },
       fetchProducts() {
         return dispatch(actions.fetchProducts());
       },
@@ -83,6 +77,36 @@ export default compose(
     componentWillMount() {
       this.props.fetchProducts();
     },
+  }),
+  withHandlers({
+    setItemsPerPage: ({
+      location: { pathname, search },
+      history,
+    }) =>
+      items => {
+        const sp = new URLSearchParams(search);
+        sp.set('itemsPerPage', items);
+        history.push(pathname + '?' + sp.toString());
+      },
+    setPage: ({
+      location: { pathname, search },
+      history,
+    }) =>
+      p => {
+        const sp = new URLSearchParams(search);
+        sp.set('page', p);
+        history.push(pathname + '?' + sp.toString());
+      },
+  }),
+  withProps(({ location }) => {
+    const { search } = location;
+    const searchParam = getParam(search);
+    return {
+      searchParam: {
+        page: Number(searchParam.page || 1),
+        itemsPerPage: Number(searchParam.itemsPerPage || 8),
+      }
+    };
   }),
   withSizes(({ width }) => ({
     isMobile: width < 600,
