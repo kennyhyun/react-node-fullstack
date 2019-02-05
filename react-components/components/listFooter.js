@@ -5,8 +5,23 @@ import Button from '@material-ui/core/Button';
 import BackIcon from '@material-ui/icons/KeyboardArrowLeft';
 import ForwardIcon from '@material-ui/icons/KeyboardArrowRight';
 import Pagination from "react-js-pagination";
+import withSizes from 'react-sizes';
+import { compose } from 'recompose';
 
 import { Row } from './common';
+
+const pgItem = {
+  height: 32,
+  minWidth: 48,
+  lineHeight: 2.1,
+  '& a': {
+    textDecoration: 'none',
+    color: 'inherit',
+  },
+  '&:hover': {
+    cursor: 'pointer',
+  },
+};
 
 const paginationStyles = {
   pgRoot: {
@@ -16,18 +31,11 @@ const paginationStyles = {
     padding: 0,
     textAlign: 'center',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    '& li': {
-      height: 32,
-      minWidth: 48,
-      lineHeight: 2.1,
-      '& a': {
-        textDecoration: 'none',
-        color: 'inherit',
-      },
-      '&:hover': {
-        cursor: 'pointer',
-      },
-    },
+  },
+  pgItem: pgItem,
+  pgItemMobile: {
+    ...pgItem,
+    minWidth: 32,
   },
   pgActive: {
     backgroundColor: 'white',
@@ -38,6 +46,7 @@ const paginationStyles = {
 
 const styles = {
   wrapper: {
+    padding: 12,
     display: 'flex',
     justifyContent: 'flex-end',
   },
@@ -52,6 +61,8 @@ const ListFooter = ({
   page = 1,
   totalItems = 0,
   confirmPage = () => {},
+  isMobile,
+  isSmall,
   classes,
 }) => {
   const pages = Math.floor(totalItems / itemsPerPage) + 1;
@@ -75,9 +86,10 @@ const ListFooter = ({
           itemsCountPerPage={itemsPerPage}
           totalItemsCount={totalItems}
           activePage={page}
-          pageRangeDisplayed={10}
+          pageRangeDisplayed={isMobile ? 5 : 10}
           onChange={confirmPage}
           innerClass={classes.pgRoot}
+          itemClass={isSmall ? classes.pgItemMobile : classes.pgItem}
           activeClass={classes.pgActive}
         />
         <Button disabled={isLast} onClick={() => move(1)}>
@@ -89,6 +101,12 @@ const ListFooter = ({
   );
 };
 
-const Enhanced = withStyles(styles)(ListFooter);
+const Enhanced = compose(
+  withSizes(({ width }) => ({
+    isMobile: width < 600,
+    isSmall: width < 768,
+  })),
+  withStyles(styles)
+)(ListFooter);
 
 export { Enhanced as ListFooter };

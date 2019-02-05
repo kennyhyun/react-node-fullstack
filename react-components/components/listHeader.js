@@ -8,6 +8,9 @@ import { Row } from './common';
 import { Preset as Select } from './select';
 
 const styles = {
+  wrapper: {
+    padding: 12,
+  },
   rightWrapper: {
     float: 'right',
     marginTop: 16,
@@ -21,7 +24,7 @@ const ListHeader = ({
   confirmItemsPerPage = () => {},
   classes,
 }) => (
-  <div>
+  <div className={classes.wrapper}>
     <div className={classes.rightWrapper}>
       <Select
         name={`${itemsPerPage} per page`}

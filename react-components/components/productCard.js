@@ -29,6 +29,7 @@ const styles = {
   },
   card: {
     borderRadius: 0,
+    height: '100%',
   },
 };
 
