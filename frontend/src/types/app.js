@@ -1,5 +1,0 @@
-const SET_ITEMS_PER_PAGE = 'APP/SET_ITEMS_PER_PAGE';
-
-export {
-  SET_ITEMS_PER_PAGE
-};
