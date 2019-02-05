@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import { Button, Welcome } from '@storybook/react/demo';
-import { ProductCard, ListHeader, ListFooter } from '../components';
+import { ProductCard, ProductGrid, ListHeader, ListFooter } from '../components';
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
@@ -16,6 +16,17 @@ storiesOf('ProductCard', module)
       description="A pilot product for test"
       price="$16.99"
     />)
+;
+
+storiesOf('ProductGrid', module)
+  .add('default', () => <ProductGrid
+    items={Array(28).fill(null).map((_, i) => ({
+      name: `title ${i}`,
+      description: `description ${i}`,
+      price: `$${i}`,
+      image: "https://imgplaceholder.com/640x360",
+    }))}
+  />)
 ;
 
 storiesOf('ListHeader', module)
