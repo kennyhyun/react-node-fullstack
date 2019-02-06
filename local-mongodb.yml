@@ -1,0 +1,10 @@
+version: "3.4"
+services:
+  localdb:
+    image: mongo:3.6.10
+    volumes:
+      - dbdata:/data/db
+    ports:
+      - "${MONGODB_PORT:-27017}:27017"
+volumes:
+  dbdata:

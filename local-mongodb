@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+if [ -z $1 ] || [ $1 != 'stop' ]; then
+  docker-compose -f local-mongodb.yml up -d
+else
+  docker-compose -f local-mongodb.yml stop
+fi
