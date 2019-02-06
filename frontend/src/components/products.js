@@ -79,7 +79,7 @@ export default compose(
         history.push(pathname + '?' + sp.toString());
       },
   }),
-  withProps(({ location }) => {
+  withProps(({ location = {} }) => {
     const { search } = location;
     const searchParam = getParam(search);
     return {
