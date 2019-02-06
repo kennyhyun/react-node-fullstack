@@ -6,9 +6,10 @@
     "test": "jest",
     "prestart": "webpack --mode production",
     "start": "node ./dist/index.js",
-    "predev": "webpack --mode development --watch &",
+    "watch": "webpack --mode development --watch",
     "postinstall": "webpack --mode development",
-    "dev": "nodemon \"./dist/index.js\" --watch \"./dist\""
+    "nodemon": "nodemon \"./dist/index.js\" --watch \"./dist\"",
+    "dev": "run-p watch nodemon"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
