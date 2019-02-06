@@ -22,8 +22,15 @@ app.use(methodOverride())
 
 const {
   MONGODB = 'mongodb://localhost:27017/database',
+  ALLOW_ORIGIN = '*',
   PORT = '3000',
 } = process.env;
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", ALLOW_ORIGIN);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 app.set('port', PORT);
 
