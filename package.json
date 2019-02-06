@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "test": "cd react-components && npm test && cd ../frontend && npm test -- --watchAll=false --coverage && cd ../restapi && npm test",
     "prepare": "cd restapi && npm i && cd ../react-components && npm link && cd ../frontend && npm i && npm link react-components",
     "start": "cd frontend && npm run dev"
   },

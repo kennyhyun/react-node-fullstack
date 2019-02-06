@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "jest",
     "prestart": "webpack --mode production",
     "start": "node ./dist/index.js",
-    "predev": "webpack --mode development --watch&",
+    "predev": "webpack --mode development --watch &",
     "postinstall": "webpack --mode development",
     "dev": "nodemon \"./dist/index.js\" --watch \"./dist\""
   },
@@ -17,6 +18,7 @@
     "express-restify-mongoose": "^5.0.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "jest": "^24.1.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.4.9",
     "morgan": "~1.9.0",
