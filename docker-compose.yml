@@ -1,0 +1,43 @@
+version: "3.4"
+services:
+  reverse-proxy:
+    image: traefik:1.7.8
+    command: --api --docker  # Enables the web UI and tells Traefik to listen to docker
+    ports:
+      - "80:80"      # The HTTP port
+      - "443:443"    # The HTTPS port
+      - "8080:8080"  # The Web UI (enabled by --api)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    depends_on:
+      - backend
+    labels:
+      - "traefik.frontend.rule=Host:app.docker.me"
+    ports:
+      - "${FRONT_PORT:-8000}:8000"
+  backend:
+    build:
+      context: ./restapi
+      dockerfile: Dockerfile
+      target: production
+    depends_on:
+      - db
+    environment:
+      MONGODB: mongodb://db:27017/docker
+      ALLOW_ORIGIN: "*"
+      PORT: 3000
+    labels:
+      - "traefik.frontend.rule=Host:api.docker.me" # should be in frontend/.env.production
+    ports:
+      - "${BACK_PORT:-8001}:3000"
+  db:
+    image: mongo:3.6.10
+    volumes:
+      - dbdata:/data/db
+volumes:
+  dbdata:
