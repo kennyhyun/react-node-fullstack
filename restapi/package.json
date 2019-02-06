@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "prestart": "webpack --mode production",
     "start": "node ./dist/index.js",
     "watch": "webpack --mode development --watch",
@@ -26,6 +26,9 @@
     "nodemon": "^1.18.9"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/runtime": "^7.3.1",
     "jade-loader": "^0.8.0",
     "terser": "3.14.1",
     "webpack": "^4.29.0",
