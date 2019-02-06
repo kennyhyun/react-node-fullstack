@@ -16,7 +16,7 @@ export const appendProducts = products => ({
   payload: { products },
 });
 
-export const fetchProducts = ({} = {}) =>
+export const fetchProducts = (params = {}) =>
   dispatch =>
     apiCall('Product')
       .then(res => {
