@@ -27,9 +27,7 @@ const Products = ({
   setItemsPerPage
 }) => {
   const { itemsPerPage: items = 8, page } = searchParam;
-  const { total, products: allProducts } = state;
-  const offset = ((page - 1) * items);
-  const products = allProducts.slice(offset, offset + items);
+  const { total, products } = state;
 
   const lastPage = Math.ceil(total / items);
   if (lastPage && page > lastPage) {
@@ -61,9 +59,19 @@ const Products = ({
 
 export default compose(
   connect(
-    state => ({
-      state: state.productReducer,
-    }),
+    (state, props) => {
+      const { location: { search } = {} } = props;
+      const sp = new URLSearchParams(search);
+      const itemsPerPage = sp.get('itemsPerPage') || 8;
+      const page = sp.get('page') || 1;
+      const offset = ((page - 1) * itemsPerPage);
+      return {
+        state: {
+          ...state.productReducer,
+          products: state.productReducer.products.slice(offset, offset + itemsPerPage),
+        },
+      };
+    },
     dispatch => ({
       fetchProducts(...args) {
         return dispatch(actions.fetchProducts(...args));
