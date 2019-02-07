@@ -113,9 +113,75 @@ exports[`renders correctly 1`] = `
           Previous page
         </span>
       </button>
-      <ul
-        className="ListFooter-pgRoot-193"
-      />
+      <div
+        className="MuiTabs-root-228"
+      >
+        <div
+          className="MuiTabs-flexContainer-229"
+        >
+          <div
+            className="MuiTabs-scroller-231 MuiTabs-fixed-232"
+            onScroll={[Function]}
+            role="tablist"
+            style={
+              Object {
+                "marginBottom": 0,
+              }
+            }
+          >
+            <div
+              className="MuiTabs-flexContainer-229"
+            >
+              <button
+                aria-selected={true}
+                className="MuiButtonBase-root-223 MuiTab-root-237 Pagination-root-227 MuiTab-textColorInherit-239 MuiTab-selected-242 Pagination-selected-226"
+                disabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onContextMenu={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                role="tab"
+                tabIndex="0"
+                type="button"
+              >
+                <span
+                  className="MuiTab-wrapper-245"
+                >
+                  <span
+                    className="MuiTab-labelContainer-246"
+                  >
+                    <span
+                      className="MuiTab-label-247"
+                    >
+                      1
+                    </span>
+                  </span>
+                </span>
+                <span
+                  className="MuiTouchRipple-root-252"
+                />
+              </button>
+            </div>
+            <span
+              className="MuiPrivateTabIndicator-root-249 MuiPrivateTabIndicator-colorPrimary-250 MuiTabs-indicator-236"
+              style={
+                Object {
+                  "left": 0,
+                  "width": 0,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
       <button
         className="MuiButtonBase-root-223 MuiButtonBase-disabled-224 MuiButton-root-197 MuiButton-text-199 MuiButton-flat-202 MuiButton-disabled-217"
         disabled={true}
