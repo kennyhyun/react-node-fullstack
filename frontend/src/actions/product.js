@@ -1,4 +1,11 @@
-import { APPEND, CLEAR, SET_ITEM_COUNT, SET_TOTAL_ITEM_COUNT, SET_PAGE } from '../types/product';
+import {
+  APPEND,
+  CLEAR,
+  SET_ITEM_COUNT,
+  INCREASE_ITEM_COUNT,
+  SET_TOTAL_ITEM_COUNT,
+  SET_PAGE,
+} from '../types/product';
 import { apiCall } from '../utils';
 
 export const clearProduct = () => ({
@@ -16,6 +23,11 @@ export const setTotalItemCount = num => ({
   payload: { num: Number(num) },
 });
 
+export const increaseItemCount = num => ({
+  type: INCREASE_ITEM_COUNT,
+  payload: { num: Number(num) },
+});
+
 export const setItemCount = num => ({
   type: SET_ITEM_COUNT,
   payload: { num: Number(num) },
@@ -28,6 +40,7 @@ export const appendProducts = products => ({
 
 const defaultParam = {
   sort: '-_id',
+  limit: 100,
 };
 
 export const fetchProducts = (params) =>
@@ -35,6 +48,9 @@ export const fetchProducts = (params) =>
     apiCall('Product', 'get', undefined, { ...defaultParam, ...params })
       .then(({ json: res, headers }) => {
         const { 'x-total-count': count } = headers;
-        dispatch(appendProducts(res))
-        dispatch(setTotalItemCount(count))
-      });
+        dispatch(increaseItemCount(res.length));
+        dispatch(appendProducts(res));
+        dispatch(setTotalItemCount(count));
+      })
+      .catch(e => console.error(e))
+;

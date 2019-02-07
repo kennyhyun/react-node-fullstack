@@ -8,7 +8,7 @@ import { ProductGrid, ListHeader, ListFooter } from 'react-components';
 
 import * as actions from '../actions/product';
 import { getParam } from '../history';
-import { getNewPage } from '../utils';
+import { fetchData, getNewPage } from '../utils';
 
 const styles = {
   wrapper: {
@@ -17,9 +17,8 @@ const styles = {
 };
 
 const Products = ({ searchParam, state, classes, isMobile, setPage, setItemsPerPage }) => {
-  const { products: allProducts } = state;
   const { itemsPerPage: items = 8, page } = searchParam;
-  const total = allProducts.length;
+  const { total, products: allProducts } = state;
   const offset = ((page - 1) * items);
   const products = allProducts.slice(offset, offset + items);
 
@@ -50,20 +49,33 @@ export default compose(
       state: state.productReducer,
     }),
     dispatch => ({
-      fetchProducts() {
-        return dispatch(actions.fetchProducts());
+      fetchProducts(...args) {
+        return dispatch(actions.fetchProducts(...args));
       },
     })
   ),
   lifecycle({
     componentWillMount() {
-      this.props.fetchProducts();
+      const {
+        fetchProducts,
+        location: { search } = {},
+        state,
+      } = this.props;
+      const param = getParam(search);
+      fetchData(fetchProducts, {
+        currentPage: param.page || 1,
+        itemsPerPage: param.itemsPerPage || 8,
+        currentItemCount: state.itemCount,
+        totalCount: state.total,
+      });
     },
   }),
   withHandlers({
     setItemsPerPage: ({
       location: { pathname, search },
       history,
+      fetchProducts,
+      state,
     }) =>
       items => {
         const page = getNewPage(getParam(search), items);
@@ -73,15 +85,29 @@ export default compose(
           sp.set('page', page);
         }
         history.push(pathname + '?' + sp.toString());
+        fetchData(fetchProducts, {
+          currentPage: page,
+          itemsPerPage: items,
+          currentItemCount: state.itemCount,
+          totalCount: state.total,
+        });
       },
     setPage: ({
       location: { pathname, search },
       history,
+      fetchProducts,
+      state,
     }) =>
       p => {
         const sp = new URLSearchParams(search);
         sp.set('page', p);
         history.push(pathname + '?' + sp.toString());
+        fetchData(fetchProducts, {
+          currentPage: p,
+          itemsPerPage: sp.get('itemsPerPage') || 8,
+          currentItemCount: state.itemCount,
+          totalCount: state.total,
+        });
       },
   }),
   withProps(({ location = {} }) => {
