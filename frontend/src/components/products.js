@@ -8,6 +8,7 @@ import { ProductGrid, ListHeader, ListFooter } from 'react-components';
 
 import * as actions from '../actions/product';
 import { getParam } from '../history';
+import { getNewPage } from '../utils';
 
 const styles = {
   wrapper: {
@@ -65,8 +66,12 @@ export default compose(
       history,
     }) =>
       items => {
+        const page = getNewPage(getParam(search), items);
         const sp = new URLSearchParams(search);
         sp.set('itemsPerPage', items);
+        if (page) {
+          sp.set('page', page);
+        }
         history.push(pathname + '?' + sp.toString());
       },
     setPage: ({
