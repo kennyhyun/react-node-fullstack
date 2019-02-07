@@ -77,8 +77,8 @@ const ListFooter = ({
   isSmall,
   classes,
 }) => {
-  const pages = Math.floor(totalItems / itemsPerPage) + 1;
-  const isFirst = page <= 1;
+  const pages = Math.ceil(totalItems / itemsPerPage) || 1;
+  const isFirst = page <= 1 || pages === 1;
   const isLast = pages <= page;
   const move = diff => {
     if ((diff < 0 && !isFirst) || (diff > 0 && !isLast)) {
@@ -93,7 +93,7 @@ const ListFooter = ({
           Previous page
         </Button>
         <Pagination
-          pages={Math.floor(totalItems/itemsPerPage) + 1}
+          pages={pages}
           page={page}
           confirmPage={confirmPage}
         />
