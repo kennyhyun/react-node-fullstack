@@ -16,11 +16,27 @@ const styles = {
   },
 };
 
-const Products = ({ searchParam, state, classes, isMobile, setPage, setItemsPerPage }) => {
+const Products = ({
+  location: { pathname, search } = {},
+  history,
+  searchParam,
+  state,
+  classes,
+  isMobile,
+  setPage,
+  setItemsPerPage
+}) => {
   const { itemsPerPage: items = 8, page } = searchParam;
   const { total, products: allProducts } = state;
   const offset = ((page - 1) * items);
   const products = allProducts.slice(offset, offset + items);
+
+  const lastPage = Math.ceil(total / items);
+  if (lastPage && page > lastPage) {
+    const sp = new URLSearchParams(search);
+    sp.set('page', lastPage);
+    history.replace(pathname + '?' + sp.toString());
+  };
 
   return (
     <div className={classes.wrapper}>
