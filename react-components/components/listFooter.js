@@ -4,12 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import BackIcon from '@material-ui/icons/KeyboardArrowLeft';
 import ForwardIcon from '@material-ui/icons/KeyboardArrowRight';
-import Pagination from "react-js-pagination";
 import withSizes from 'react-sizes';
 import { compose } from 'recompose';
 import { defaultProps, propTypes } from 'proptypes-helper';
 
 import { Row } from './common';
+import { Pagination } from "./pagination";
 
 const pgItem = {
   height: 32,
@@ -93,16 +93,9 @@ const ListFooter = ({
           Previous page
         </Button>
         <Pagination
-          hideFirstLastPages
-          hideNavigation
-          itemsCountPerPage={itemsPerPage}
-          totalItemsCount={totalItems}
-          activePage={page}
-          pageRangeDisplayed={isMobile ? 5 : 10}
-          onChange={confirmPage}
-          innerClass={classes.pgRoot}
-          itemClass={isSmall ? classes.pgItemMobile : classes.pgItem}
-          activeClass={classes.pgActive}
+          pages={Math.floor(totalItems/itemsPerPage) + 1}
+          page={page}
+          confirmPage={confirmPage}
         />
         <Button disabled={isLast} onClick={() => move(1)}>
           Next page

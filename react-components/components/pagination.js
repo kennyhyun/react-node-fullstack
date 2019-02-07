@@ -3,6 +3,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { defaultProps, propTypes } from 'proptypes-helper';
+import { getVisiblePageIndice } from './utils';
 
 const styles = {
   selected: {
@@ -13,24 +15,43 @@ const styles = {
   },
 };
 
+const types = {
+  optional: {
+    visibleLength: 10,
+  },
+  required: {
+    page: 1,
+    pages: 1,
+    confirmPage: () => {},
+  },
+};
+
 const Pagination = ({
   pages = 1,
   page = 1,
+  visibleLength,
   confirmPage = () => {},
   classes,
 }) => {
+  const visible = getVisiblePageIndice(pages, page, visibleLength);
+  const lastIndex = visible.slice(-1)[0];
   return (
     <Tabs
-      value={page - 1}
-      onChange={(_, i)  => confirmPage(i + 1)}
+      value={page - visible[0]}
+      onChange={(_, i)  => confirmPage(i + visible[0])}
       indicatorColor="primary"
     >
-      {Array(pages).fill(null).map(
-        (_, p) => <Tab key={p} label={p + 1} classes={classes}/>
+      {visible.map(
+        (p, i) => <Tab key={p} label={
+          (i == (visible.length - 1) && lastIndex != pages) ? '...' : p
+        } classes={classes}/>
       )}
     </Tabs>
 );
 };
+
+Pagination.defaultProps = defaultProps(types);
+Pagination.propTypes = propTypes(types);
 
 const Enhanced = withStyles(styles)(Pagination);
 
