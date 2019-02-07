@@ -16,5 +16,6 @@ export const apiCall = (endpoint, method = 'get', body) =>
       if (!response.ok) {
         return Promise.reject(json);
       }
-      return json;
+      const headers = Object.assign({}, ...[...response.headers.entries()].map(([k, v]) => ({ [k]: v })));
+      return { json, headers };
     });

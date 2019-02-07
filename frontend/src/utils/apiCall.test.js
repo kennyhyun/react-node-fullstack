@@ -3,7 +3,8 @@ import fetch from 'isomorphic-fetch';
 
 jest.mock('isomorphic-fetch', () => jest.fn().mockResolvedValue({
   ok: true,
-  json: jest.fn().mockResolvedValue()
+  json: jest.fn().mockResolvedValue({}),
+  headers: new Map(),
 }));
 
 describe('apiCall', () => {
@@ -14,6 +15,10 @@ describe('apiCall', () => {
       { headers: { 'content-type': 'application/json' }, method: 'get' }
     );
   });
+  it('should return an object with json and headers', async () => {
+    const resp = await apiCall('product');
+    expect(resp).toEqual({ json: {}, headers: {} });
+  });
 
 });
 
@@ -23,7 +28,8 @@ describe('apiCall with process.env', () => {
     jest.resetModules();
     jest.mock('isomorphic-fetch', () => jest.fn().mockResolvedValue({
       ok: true,
-      json: jest.fn().mockResolvedValue()
+      json: jest.fn().mockResolvedValue(),
+      headers: new Map(),
     }));
     process.env = { ...OLD_ENV };
     process.env.REACT_APP_API_HOST = 'http://dummy';
