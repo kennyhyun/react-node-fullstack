@@ -26,9 +26,13 @@ export const appendProducts = products => ({
   payload: { products },
 });
 
-export const fetchProducts = (params = {}) =>
+const defaultParam = {
+  sort: '-_id',
+};
+
+export const fetchProducts = (params) =>
   dispatch =>
-    apiCall('Product')
+    apiCall('Product', 'get', undefined, { ...defaultParam, ...params })
       .then(({ json: res, headers }) => {
         const { 'x-total-count': count } = headers;
         dispatch(appendProducts(res))
