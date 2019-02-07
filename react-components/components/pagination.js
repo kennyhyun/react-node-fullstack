@@ -35,9 +35,10 @@ const Pagination = ({
 }) => {
   const visible = getVisiblePageIndice(pages, page, visibleLength);
   const lastIndex = visible.slice(-1)[0];
+
   return (
     <Tabs
-      value={page - visible[0]}
+      value={Math.min(page, pages) - visible[0]}
       onChange={(_, i)  => confirmPage(i + visible[0])}
       indicatorColor="primary"
     >
