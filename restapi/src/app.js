@@ -29,6 +29,7 @@ const {
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", ALLOW_ORIGIN);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Expose-Headers", "X-Total-Count");
     next();
 });
 
@@ -49,7 +50,7 @@ if (process.env.NODE_ENV !== 'test') {
 
 app.use('/', indexRouter);
 
-restify.serve(router, Product);
+restify.serve(router, Product, { totalCountHeader: true });
 
 app.use(router)
 
