@@ -28,7 +28,7 @@ services:
     depends_on:
       - db
     environment:
-      MONGODB: mongodb://db:27017/docker
+      MONGODB: "${MONGODB:-mongodb://db:27017/docker}"
       ALLOW_ORIGIN: "*"
       PORT: 3000
     labels:
