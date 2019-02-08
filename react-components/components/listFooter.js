@@ -51,6 +51,11 @@ const styles = {
     display: 'flex',
     justifyContent: 'flex-end',
   },
+  mobileWrapper: {
+    padding: [[12, 0]],
+    display: 'flex',
+    justifyContent: 'center',
+  },
   content: {
     display: 'flex',
   },
@@ -86,16 +91,17 @@ const ListFooter = ({
     }
   };
   return (
-    <div className={classes.wrapper}>
+    <div className={isMobile ? classes.mobileWrapper : classes.wrapper}>
       <div className={classes.content}>
         <Button disabled={isFirst} onClick={() => move(-1)}>
           <BackIcon />
-          Previous page
+          {isMobile ? 'Prev page' : 'Previous page'}
         </Button>
         <Pagination
           pages={pages}
           page={page}
           confirmPage={confirmPage}
+          visibleLength={isSmall ? 5 : 10}
         />
         <Button disabled={isLast} onClick={() => move(1)}>
           Next page

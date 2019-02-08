@@ -72,10 +72,10 @@ exports[`renders correctly 1`] = `
     className="ListFooter-wrapper-191"
   >
     <div
-      className="ListFooter-content-192"
+      className="ListFooter-content-193"
     >
       <button
-        className="MuiButtonBase-root-223 MuiButtonBase-disabled-224 MuiButton-root-197 MuiButton-text-199 MuiButton-flat-202 MuiButton-disabled-217"
+        className="MuiButtonBase-root-224 MuiButtonBase-disabled-225 MuiButton-root-198 MuiButton-text-200 MuiButton-flat-203 MuiButton-disabled-218"
         disabled={true}
         onBlur={[Function]}
         onClick={[Function]}
@@ -93,7 +93,7 @@ exports[`renders correctly 1`] = `
         type="button"
       >
         <span
-          className="MuiButton-label-198"
+          className="MuiButton-label-199"
         >
           <svg
             aria-hidden="true"
@@ -114,13 +114,13 @@ exports[`renders correctly 1`] = `
         </span>
       </button>
       <div
-        className="MuiTabs-root-228"
+        className="MuiTabs-root-229"
       >
         <div
-          className="MuiTabs-flexContainer-229"
+          className="MuiTabs-flexContainer-230"
         >
           <div
-            className="MuiTabs-scroller-231 MuiTabs-fixed-232"
+            className="MuiTabs-scroller-232 MuiTabs-fixed-233"
             onScroll={[Function]}
             role="tablist"
             style={
@@ -130,11 +130,11 @@ exports[`renders correctly 1`] = `
             }
           >
             <div
-              className="MuiTabs-flexContainer-229"
+              className="MuiTabs-flexContainer-230"
             >
               <button
                 aria-selected={true}
-                className="MuiButtonBase-root-223 MuiTab-root-237 Pagination-root-227 MuiTab-textColorInherit-239 MuiTab-selected-242 Pagination-selected-226"
+                className="MuiButtonBase-root-224 MuiTab-root-238 Pagination-root-228 MuiTab-textColorInherit-240 MuiTab-selected-243 Pagination-selected-227"
                 disabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
@@ -153,25 +153,25 @@ exports[`renders correctly 1`] = `
                 type="button"
               >
                 <span
-                  className="MuiTab-wrapper-245"
+                  className="MuiTab-wrapper-246"
                 >
                   <span
-                    className="MuiTab-labelContainer-246"
+                    className="MuiTab-labelContainer-247"
                   >
                     <span
-                      className="MuiTab-label-247"
+                      className="MuiTab-label-248"
                     >
                       1
                     </span>
                   </span>
                 </span>
                 <span
-                  className="MuiTouchRipple-root-252"
+                  className="MuiTouchRipple-root-253"
                 />
               </button>
             </div>
             <span
-              className="MuiPrivateTabIndicator-root-249 MuiPrivateTabIndicator-colorPrimary-250 MuiTabs-indicator-236"
+              className="MuiPrivateTabIndicator-root-250 MuiPrivateTabIndicator-colorPrimary-251 MuiTabs-indicator-237"
               style={
                 Object {
                   "left": 0,
@@ -183,7 +183,7 @@ exports[`renders correctly 1`] = `
         </div>
       </div>
       <button
-        className="MuiButtonBase-root-223 MuiButtonBase-disabled-224 MuiButton-root-197 MuiButton-text-199 MuiButton-flat-202 MuiButton-disabled-217"
+        className="MuiButtonBase-root-224 MuiButtonBase-disabled-225 MuiButton-root-198 MuiButton-text-200 MuiButton-flat-203 MuiButton-disabled-218"
         disabled={true}
         onBlur={[Function]}
         onClick={[Function]}
@@ -201,7 +201,7 @@ exports[`renders correctly 1`] = `
         type="button"
       >
         <span
-          className="MuiButton-label-198"
+          className="MuiButton-label-199"
         >
           Next page
           <svg
