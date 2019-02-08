@@ -65,8 +65,6 @@ export default compose(
       const itemsPerPage = Number(sp.get('itemsPerPage')) || 8;
       const page = Number(sp.get('page')) || 1;
       const offset = ((page - 1) * itemsPerPage);
-      console.log(page, itemsPerPage);
-      console.log(offset, offset + itemsPerPage);
       return {
         state: {
           ...state.productReducer,
