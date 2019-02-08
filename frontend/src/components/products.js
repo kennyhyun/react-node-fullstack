@@ -62,9 +62,11 @@ export default compose(
     (state, props) => {
       const { location: { search } = {} } = props;
       const sp = new URLSearchParams(search);
-      const itemsPerPage = sp.get('itemsPerPage') || 8;
-      const page = sp.get('page') || 1;
+      const itemsPerPage = Number(sp.get('itemsPerPage')) || 8;
+      const page = Number(sp.get('page')) || 1;
       const offset = ((page - 1) * itemsPerPage);
+      console.log(page, itemsPerPage);
+      console.log(offset, offset + itemsPerPage);
       return {
         state: {
           ...state.productReducer,
